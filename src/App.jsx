@@ -6,18 +6,20 @@ function App() {
  const [n1, setN1] = useState()
  const [n2, setN2] = useState()
  const [respSoma, setRespSoma] = useState()
- const [respSub, setRespsub] = useState()
+ const [respSub, setRespSub] = useState()
  const [respMult, setRespMult] = useState()
  const [respDiv, setRespDiv] = useState()
 
- const[error, setError] = useState()
+ const[error, setError] = useState(' ')
 
 
  useEffect(() =>{
-  if(n1 !== undefined && n2 !== undefined && !isNaN(n1)){
+  if(n1 !== undefined && n2 !== undefined && !isNaN(n1) && !isNaN(n2)){
  setRespSoma(parseFloat(n1) + parseFloat(n2))
-
- setError('')
+ setRespSub(parseFloat(n1) - parseFloat(n2))
+ setRespMult(parseFloat(n1) * parseFloat(n2))
+ setRespDiv(parseFloat(n1) / parseFloat(n2))
+ setError('digite valores numericos para calcular')
   }else{
     setError('digite valores numericos para calcular')
   }
@@ -26,12 +28,12 @@ function App() {
 
 
   return (
-    <>
-   <h1 className={Styles.title}>qualquer</h1>
+    <div className={Styles.wrapAll}>
+   <h1 className={Styles.title}>calculadora</h1>
    <p>{error}</p>
     <div className={Styles.wrap}>
-      <input type="number" onChange={(e) => setN1(e.target.value)} value={''} placeholder=''/>
-      <input type="number" onChange={(e) => setN2 (e.target.value)} value={''} placeholder=''/>
+      <input type="number" onChange={(e) => setN1(e.target.value)} value={n1} placeholder='digite um numero'/>
+      <input type="number" onChange={(e) => setN2 (e.target.value)} value={n2} placeholder='digite outro numero'/>
     </div>
 
     <div className={Styles.wrapResps}>
@@ -54,7 +56,7 @@ function App() {
       <h3>{respDiv}</h3>
 
     </div>
-    </>
+ </div>
   )
 }
 
